@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+aset_barang_manager,Divisi operasional,model_aset_barang,,1,1,1,1
+aset_barang_sewaan_manager,Divisi operasional,model_aset_barang_sewaan,,1,1,1,1
+aset_barang_kembalian_manager,Divisi operasional,model_aset_barang_kembalian,,1,1,1,1
+aset_penyewaan_manager,Divisi operasional,model_aset_penyewaan,,1,1,1,1
+aset_pengembalian_manager,Divisi operasional,model_aset_pengembalian,,1,1,1,1
+aset_produksi_manager,Divisi operasional,model_aset_produksi,,1,1,1,1

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <record model="ir.ui.view" id="aset_barang_tree">
+    <field name="name">aset.barang.tree</field>
+    <field name="model">aset.barang</field>
+    <field name="priority" eval="1"/>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="qty"/>
+        <button class="fa fa-plus" type="action" name="%(action_produksi)d" />
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="aset_barang_sewaan_tree">
+    <field name="name">aset.barang_sewaan.tree</field>
+    <field name="model">aset.barang_sewaan</field>
+    <field name="priority" eval="1"/>
+    <field name="arch" type="xml">
+      <tree>
+            <field name="item"/>
+            <field name="rental"/>
+            <field name="qty"/>
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="aset_barang_kembalian_tree">
+    <field name="name">aset.barang_kembalian.tree</field>
+    <field name="model">aset.barang_kembalian</field>
+    <field name="priority" eval="1"/>
+    <field name="arch" type="xml">
+      <tree>
+            <field name="item"/>
+            <field name="rental"/>
+            <field name="return_"/>
+            <field name="qty"/>
+      </tree>
+    </field>
+  </record>
+
+
+  <record model="ir.ui.view" id="aset_penyewaan_tree">
+    <field name="name">aset.penyewaan.tree</field>
+    <field name="model">aset.penyewaan</field>
+    <field name="priority" eval="1"/>
+    <field name="arch" type="xml">
+      <tree>
+            <field name="client"/>
+            <field name="durations"/>
+            <field name="rental_date"/>
+            <field name="status"/>
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="aset_pengembalian_tree">
+    <field name="name">aset.pengembalian.tree</field>
+    <field name="model">aset.pengembalian</field>
+    <field name="priority" eval="1"/>
+    <field name="arch" type="xml">
+      <tree>
+            <field name="return_date"/>
+      </tree>
+    </field>
+  </record>
+  
+</odoo>

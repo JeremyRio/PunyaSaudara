@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_list_barang" model="ir.actions.act_window">
+        <field name="name">Barang</field>
+        <field name="res_model">aset.barang</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_list_penyewaan" model="ir.actions.act_window">
+        <field name="name">Penyewaan</field>
+        <field name="res_model">aset.penyewaan</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <record id="action_list_pengembalian" model="ir.actions.act_window">
+        <field name="name">Pengembalian</field>
+        <field name="res_model">aset.pengembalian</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <record id="action_list_barang_sewaan" model="ir.actions.act_window">
+        <field name="name">Barang Sewaan</field>
+        <field name="res_model">aset.barang_sewaan</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <record id="action_list_barang_kembalian" model="ir.actions.act_window">
+        <field name="name">Barang Kembalian</field>
+        <field name="res_model">aset.barang_kembalian</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <record id="action_produksi" model="ir.actions.act_window">
+        <field name="name">Produksi Barang</field>
+        <field name="res_model">aset.produksi</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <menuitem id="aset_root_menu" 
+        name="Pencatatan Aset"
+        sequence="1"/>
+
+    <menuitem id="aset_barang_menu" 
+        name="Barang"
+        parent="aset_root_menu"
+        action="action_list_barang"
+        sequence="1"/>
+
+    <menuitem id="aset_penyewaan_menu" 
+        name="Penyewaan"
+        parent="aset_root_menu"
+        action="action_list_penyewaan"
+        sequence="2"/>
+
+    <menuitem id="aset_pengembalian_menu" 
+        name="Pengembalian"
+        parent="aset_root_menu"
+        action="action_list_pengembalian"
+        sequence="3"/>
+
+    <menuitem id="aset_barang_sewaan_menu" 
+        name="Barang Sewaan"
+        parent="aset_root_menu"
+        action="action_list_barang_sewaan"
+        sequence="4"/>
+
+    <menuitem id="aset_barang_kembalian_menu" 
+        name="Barang Kembalian"
+        parent="aset_root_menu"
+        action="action_list_barang_kembalian"
+        sequence="5"/>
+</odoo>

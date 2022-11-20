@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <record model="ir.ui.view" id="aset_barang_form">
+    <field name="name">aset.barang.form</field>
+    <field name="model">aset.barang</field>
+    <field name="priority" eval="1"/>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="qty"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="aset_produksi_form">
+    <field name="name">aset.produksi.form</field>
+    <field name="model">aset.produksi</field>
+    <field name="priority" eval="1"/>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="item"/>
+            <field name="qty"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="aset_barang_sewaan_form">
+    <field name="name">aset.barang_sewaan.form</field>
+    <field name="model">aset.barang_sewaan</field>
+    <field name="priority" eval="1"/>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="item"/>
+            <field name="rental"/>
+            <field name="qty"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="aset_barang_kembalian_form">
+    <field name="name">aset.barang_kembalian.form</field>
+    <field name="model">aset.barang_kembalian</field>
+    <field name="priority" eval="1"/>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="item"/>
+            <field name="rental"/>
+            <field name="return_"/>
+            <field name="qty"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+
+  <!-- <record model="ir.ui.view" id="aset_barang_form">
+    <field name="name">aset.barang.form</field>
+    <field name="model">aset.barang</field>
+    <field name="priority" eval="1"/>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="qty"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record> -->
+  
+</odoo>
