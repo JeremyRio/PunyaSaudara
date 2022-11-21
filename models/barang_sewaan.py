@@ -33,6 +33,10 @@ class BarangSewaan(Model):
             raise ValidationError(
                 "Kuantitas penyewaan melebihi kuantitas stok.")
 
+        if item_rental.rental.status == "1":
+            raise ValidationError(
+                "Penyewaan telah dikembalikan.")
+
         item_rental.item.qty -= item_rental.qty
 
         return item_rental
