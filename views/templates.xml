@@ -384,7 +384,7 @@
 
 
         <div class="w-4/5 mx-auto mt-28">
-            <h1>Tambah Pengembalian Baru</h1>
+            <h1>Pengembalian Barang</h1>
             <a href="/asset/returns/new">
                 <button type="button" class="text-blue-700
                     hover:text-white hover:bg-blue-700 focus:outline-none
