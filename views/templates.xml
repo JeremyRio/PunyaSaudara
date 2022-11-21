@@ -296,9 +296,7 @@
                             <t t-foreach="rentals" t-as="rental">
                                 <option t-att-value="rental.id">
                                     <t t-esc="rental.client" />
-                                    (
-                                    <t t-esc="rental.date_string()" />
-                                    ,
+                                    <t t-esc="'(' +rental.date_string() + ', '" />
                                     <t t-esc="rental.duration" />
                                     hari)
                                 </option>
@@ -307,7 +305,7 @@
                     </div>
                     <div class="mb-6">
                         <label for="item-id" class="block mb-2 text-sm font-semibold text-gray-900">Barang yang disewa</label>
-                        <select id="item-id" name="rental-id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <select id="item-id" name="item-id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                             <t t-foreach="items" t-as="item">
                                 <option t-att-value="item.id">
                                     <t t-esc="item.name" />
@@ -459,7 +457,7 @@
                     </div>
                     <div class="mb-6">
                         <label for="item-id" class="block mb-2 text-sm font-semibold text-gray-900">Barang yang disewa</label>
-                        <select id="item-id" name="rental-id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <select id="item-id" name="item-id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                             <t t-foreach="items" t-as="item">
                                 <option t-att-value="item.id">
                                     <t t-esc="item.name" />
