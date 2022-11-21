@@ -49,7 +49,7 @@
     <field name="arch" type="xml">
       <tree>
             <field name="client"/>
-            <field name="durations"/>
+            <field name="duration"/>
             <field name="rental_date"/>
             <field name="status"/>
       </tree>

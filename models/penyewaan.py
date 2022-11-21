@@ -1,5 +1,6 @@
 from odoo import fields, api
 from odoo.models import Model
+from datetime import datetime
 
 
 class Penyewaan(Model):
@@ -7,16 +8,19 @@ class Penyewaan(Model):
     _description = "Penyewaan yang telah dilayani oleh perusahaan."
 
     client = fields.Char(string="Klien", required=True)
-    durations = fields.Integer(string="Durasi (hari)", required=True)
+    duration = fields.Integer(string="Durasi (hari)", required=True)
     rental_date = fields.Date(string="Tanggal Sewa", required=True)
     status = fields.Selection(string="Status", required=True, selection=[
         ("0", "Belum Dikembalikan"), ("1", "Dikembalikan")
-    ])
+    ], default="0")
 
-    items = fields.Many2many(
-        "aset.barang_sewaan", required=True)
+    items = fields.One2many(
+        "aset.barang_sewaan", required=True, inverse_name="rental")
 
-    returned_items = fields.Many2many("aset.barang_kembalian", required=True)
+    returned_items = fields.One2many(
+        "aset.barang_kembalian", required=True, inverse_name="rental")
+    month = fields.Integer(compute="_get_month", store=True)
+    year = fields.Integer(compute="_get_year", store=True)
 
     def __str__(self) -> str:
         return super().__str__()
@@ -68,3 +72,27 @@ class Penyewaan(Model):
 
     def write(self, vals):
         return super().write(vals)
+
+    def __str__(self):
+        return f"{self.client} {self.rental_date}"
+
+    @api.depends("rental_date")
+    def _get_month(self):
+        for record in self:
+            record.month = record.rental_date.strftime("%m")
+
+    @api.depends("rental_date")
+    def _get_year(self):
+        for record in self:
+            record.year = record.rental_date.strftime("%Y")
+
+    def date_string(self):
+        year = self.rental_date.strftime("%Y")
+        month_index = self.rental_date.strftime("%m")
+        date = self.rental_date.strftime("%d")
+
+        months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
+                  "Juli", "Agustus", "September", "Oktober", "November", "Desember"]
+        month = months[int(month_index) - 1]
+
+        return f"{date} {month} {year}"

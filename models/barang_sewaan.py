@@ -7,8 +7,8 @@ class BarangSewaan(Model):
     _name = "aset.barang_sewaan"
     _description = "Barang perusahaan yang disewakan."
 
-    item = fields.Many2many("aset.barang", string="Barang", required=True)
-    rental = fields.Many2many(
+    item = fields.Many2one("aset.barang", string="Barang", required=True)
+    rental = fields.Many2one(
         "aset.penyewaan", string="Penyewaan", required=True)
     qty = fields.Integer(string="Kuantitas", default=1, required=True)
 

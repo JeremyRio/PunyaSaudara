@@ -7,10 +7,10 @@ class BarangKembalian(Model):
     _name = "aset.barang_kembalian"
     _description = "Barang sewaan yang telah dikembalikan."
 
-    item = fields.Many2many("aset.barang", string="Barang", required=True)
-    rental = fields.Many2many(
+    item = fields.Many2one("aset.barang", string="Barang", required=True)
+    rental = fields.Many2one(
         "aset.penyewaan", string="Penyewaan", required=True)
-    return_ = fields.Many2many(
+    return_ = fields.Many2one(
         "aset.pengembalian", string="Pengembalian", required=True)
     qty = fields.Integer(string="Kuantitas", default=1, required=True)
 
