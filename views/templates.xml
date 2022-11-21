@@ -7,7 +7,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Inter" rel="stylesheet" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <script src="https://cdn.tailwindcss.com"></script>
-        <script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
+        <script defer="" src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
         <script src="https://unpkg.com/flowbite@1.5.4/dist/datepicker.js"></script>
         <style>
             h1 {
@@ -62,6 +62,30 @@
             </div>
         </nav>
 
+    </template>
+
+    <template id="error">
+        <t t-if="request.params.get('err')">
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const sb = document.getElementById('err-snackbar');
+                    setTimeout(() => {
+                        sb.style.opacity = 0;
+                    }, 3000);
+                });
+            </script>
+            <div id="err-snackbar" class="transition-opacity transition-300 ease-out flex absolute bottom-5 right-5 items-center p-4 mb-4 w-full max-w-xs text-gray-500 bg-white rounded-lg shadow" role="alert">
+                <div class="inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-red-500 bg-red-100 rounded-lg">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="sr-only">Error icon</span>
+                </div>
+                <div class="ml-3 text-sm font-normal">
+                    <t t-esc="request.params.get('err')"></t>
+                </div>
+            </div>
+        </t>
     </template>
 
     <template id="index">
@@ -159,6 +183,7 @@
             </form>
         </div>
 
+        <t t-call="PunyaSaudara.error" />
     </template>
 
     <template id="barang_produce">
@@ -200,7 +225,7 @@
             </form>
         </div>
 
-
+        <t t-call="PunyaSaudara.error" />
     </template>
 
     <template id="penyewaan">
@@ -349,6 +374,7 @@
                 <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
             </form>
         </div>
+        <t t-call="PunyaSaudara.error" />
     </template>
 
     <template id="pengembalian">
@@ -491,5 +517,6 @@
                 <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
             </form>
         </div>
+        <t t-call="PunyaSaudara.error" />
     </template>
 </odoo>
