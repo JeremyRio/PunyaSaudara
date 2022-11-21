@@ -17,24 +17,19 @@ class BarangKembalian(Model):
     @api.model
     def create(self, vals_list):
 
-        item_return = super().create(vals_list)
-
-        item = item_return.item
-        rented_item_qty = item_return.rental.count_rented_item(item)
-        returned_item_qty = item_return.rental.count_returned_item(item)
-        return_qty = item_return.qty
+        item = self.env["aset.barang"].browse([vals_list["item"]])
+        rental = self.env["aset.penyewaan"].browse([vals_list["rental"]])
+        rented_item_qty = rental.count_rented_item(item)
+        returned_item_qty = rental.count_returned_item(item)
+        return_qty = int(vals_list["qty"])
 
         if returned_item_qty > rented_item_qty:
             raise ValidationError(
-                "Kuantitas pengembalian melebihi kuantitas penyewaan.\n"
-                f"Kuantitas disewa              : {rented_item_qty}\n"
-                f"Kuantitas telah dikembalikan  : {returned_item_qty - return_qty}\n"
-                f"Sisa barang belum dikembalikan: {rented_item_qty - returned_item_qty + return_qty}\n"
-                f"Kuantitas pengembalian        : {return_qty}\n"
+                f"Kuantitas pengembalian ({return_qty}) melebihi kuantitas barang yang belum dikembalikan ({rented_item_qty - returned_item_qty + return_qty})."
             )
 
+        item_return = super().create(vals_list)
         item.qty += item_return.qty
-
         item_return.check_rental_status()
 
         return item_return

@@ -14,29 +14,21 @@ class BarangSewaan(Model):
 
     @api.model
     def create(self, vals_list):
+        print(vals_list)
 
-        item_rental = super().create(vals_list)
+        qty = int(vals_list["qty"])
+        item = self.env["aset.barang"].browse([vals_list["item"]])
+        rental = self.env["aset.penyewaan"].browse([vals_list["rental"]])
 
-        try:
-            item_rental.item.qty
-        except:
-            raise ValidationError(
-                "Tidak bisa memilih lebih dari 1 barang.")
-
-        try:
-            item_rental.rental.client
-        except:
-            raise ValidationError(
-                "Tidak bisa memilih lebih dari 1 penyewaan.")
-
-        if item_rental.qty > item_rental.item.qty:
+        if qty > item.qty:
             raise ValidationError(
                 "Kuantitas penyewaan melebihi kuantitas stok.")
 
-        if item_rental.rental.status == "1":
+        if rental.status == "1":
             raise ValidationError(
                 "Penyewaan telah dikembalikan.")
 
+        item_rental = super().create(vals_list)
         item_rental.item.qty -= item_rental.qty
 
         return item_rental
