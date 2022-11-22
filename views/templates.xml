@@ -111,7 +111,7 @@
             <div class="flex gap-2">
                 <a href="/asset/items/new">
                     <button type="button" class="text-purple-500
-                    hover:text-white hover:bg-purple-500 focus:outline
+                    hover:text-white hover:bg-purple-500 focus:outline-none
                     font-semibold rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-4
                     flex gap-1 items-center border-2 border-solid border-purple-500
                     ">
@@ -189,11 +189,11 @@
                 <div class="grid gap-6 mb-6 md:grid-cols-2">
                     <div class="mb-6">
                         <label for="name" class="block mb-2 text-sm font-semibold text-gray-900">Nama barang</label>
-                        <input id="name" name="name" type="text" placeholder="Barang" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required="true" />
+                        <input id="name" name="name" type="text" placeholder="Barang" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required="true" />
                     </div>
                 </div>
                 <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
-                <button type="submit" class="text-white bg-purple-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+                <button type="submit" class="text-purple-500 hover:bg-purple-500 hover:text-white font-semibold border-solid border-2 border-purple-500 rounded-full text-sm px-5 py-2.5 text-center mr-3 md:mr-0">Tambah</button>
             </form>
         </div>
 
@@ -214,7 +214,7 @@
                         <label for="id" class="block mb-2 text-sm font-semibold text-gray-900">Barang yang diproduksi</label>
                         <t t-set="given_id" t-value="int(request.params.get('id')) if request.params.get('id') else 0" />
 
-                        <select id="id" name="id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <select id="id" name="id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                             <t t-foreach="items" t-as="item">
                                 <t t-if="given_id == item.id">
                                     <option t-att-value="item.id" selected="selected">
@@ -231,11 +231,11 @@
                     </div>
                     <div class="mb-6">
                         <label for="qty" class="block mb-2 text-sm font-semibold text-gray-900">Kuantitas produksi</label>
-                        <input id="qty" name="qty" type="number" min="1" step="1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="1" required="true" />
+                        <input id="qty" name="qty" type="number" min="1" step="1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" placeholder="1" required="true" />
                     </div>
                 </div>
                 <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
-                <button type="submit" class="text-white bg-purple-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+                <button type="submit" class="text-purple-500 hover:bg-purple-500 hover:text-white font-semibold border-solid border-2 border-purple-500 rounded-full text-sm px-5 py-2.5 text-center mr-3 md:mr-0">Produksi</button>
             </form>
         </div>
 
@@ -412,7 +412,7 @@
                 <div class="grid gap-6 mb-6 md:grid-cols-2">
                     <div class="mb-6">
                         <label for="rental-id" class="block mb-2 text-sm font-semibold text-gray-900">Penyewaan</label>
-                        <select id="rental-id" name="rental-id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <select id="rental-id" name="rental-id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                             <t t-foreach="rentals" t-as="rental">
                                 <option t-att-value="rental.id">
                                     <t t-esc="rental.client" />
@@ -425,7 +425,7 @@
                     </div>
                     <div class="mb-6">
                         <label for="item-id" class="block mb-2 text-sm font-semibold text-gray-900">Barang yang disewa</label>
-                        <select id="item-id" name="item-id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <select id="item-id" name="item-id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                             <t t-foreach="items" t-as="item">
                                 <option t-att-value="item.id">
                                     <t t-esc="item.name" />
@@ -435,22 +435,22 @@
                     </div>
                     <div class="mb-6">
                         <label for="qty" class="block mb-2 text-sm font-semibold text-gray-900">Kuantitas penyewaan</label>
-                        <input id="qty" name="qty" type="number" min="1" step="1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="1" required="true" />
+                        <input id="qty" name="qty" type="number" min="1" step="1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" placeholder="1" required="true" />
                     </div>
                 </div>
                 <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
-                <button type="submit" class="text-white bg-purple-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+                <button type="submit" class="text-purple-500 hover:bg-purple-500 hover:text-white font-semibold border-solid border-2 border-purple-500 rounded-full text-sm px-5 py-2.5 text-center mr-3 md:mr-0">Sewa</button>
             </form>
             <h2>Tidak menemukan penyewaan?</h2>
             <form method="POST" action="/asset/rentals/new-rental">
                 <div class="grid gap-6 mb-6 md:grid-cols-2">
                     <div class="mb-6">
                         <label for="client" class="block mb-2 text-sm font-semibold text-gray-900">Penyewa</label>
-                        <input id="client" name="client" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required="true" />
+                        <input id="client" name="client" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required="true" />
                     </div>
                     <div class="mb-6">
                         <label for="duration" class="block mb-2 text-sm font-semibold text-gray-900">Durasi sewa (hari)</label>
-                        <input id="duration" name="duration" type="number" min="1" step="1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required="true" />
+                        <input id="duration" name="duration" type="number" min="1" step="1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required="true" />
                     </div>
                     <div class="mb-6">
                         <label for="date" class="block mb-2 text-sm font-semibold text-gray-900">Tanggal penyewaan</label>
@@ -460,13 +460,13 @@
                                     <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
                                 </svg>
                             </div>
-                            <input id="date" datepicker="" name="date" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Select date" />
+                            <input id="date" datepicker="" name="date" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5" placeholder="Select date" />
                         </div>
                     </div>
                 </div>
 
                 <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
-                <button type="submit" class="text-white bg-purple-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+                <button type="submit" class="text-purple-500 hover:bg-purple-500 hover:text-white font-semibold border-solid border-2 border-purple-500 rounded-full text-sm px-5 py-2.5 text-center mr-3 md:mr-0">Buat Penyewaan</button>
             </form>
         </div>
         <t t-call="PunyaSaudara.error" />
@@ -496,7 +496,7 @@
                 <div class="grid gap-6 mb-6 md:grid-cols-2">
                     <div class="mb-6">
                         <label for="month" class="block mb-2 text-sm font-semibold text-gray-900">Bulan</label>
-                        <select id="month" name="month" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <select id="month" name="month" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                             <t t-foreach="months" t-as="month">
                                 <option t-att-value="month_index + 1">
                                     <t t-esc="month" />
@@ -506,7 +506,7 @@
                     </div>
                     <div class="mb-6">
                         <label for="year" class="block mb-2 text-sm font-semibold text-gray-900">Tahun</label>
-                        <select id="year" name="year" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <select id="year" name="year" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                             <t t-foreach="years" t-as="year">
                                 <option t-att-value="year">
                                     <t t-esc="year" />
@@ -515,7 +515,7 @@
                         </select>
                     </div>
                 </div>
-                <button type="submit" class="text-white bg-purple-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Lihat</button>
+                <button type="submit" class="text-white bg-purple-500 hover:bg-blue-800 focus:outline-none font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Lihat</button>
             </form>
         </div>
         <t t-call="PunyaSaudara.error" />
@@ -704,7 +704,7 @@
                 <div class="grid gap-6 mb-6 md:grid-cols-2">
                     <div class="mb-6">
                         <label for="return-id" class="block mb-2 text-sm font-semibold text-gray-900">Pengembalian</label>
-                        <select id="return-id" name="return-id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <select id="return-id" name="return-id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                             <t t-foreach="returns" t-as="return">
                                 <option t-att-value="return.id">
                                     <t t-esc="return.date_string()" />
@@ -714,7 +714,7 @@
                     </div>
                     <div class="mb-6">
                         <label for="rental-id" class="block mb-2 text-sm font-semibold text-gray-900">Penyewaan</label>
-                        <select id="rental-id" name="rental-id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <select id="rental-id" name="rental-id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                             <t t-foreach="rentals" t-as="rental">
                                 <option t-att-value="rental.id">
                                     <t t-esc="rental.client" />
@@ -729,7 +729,7 @@
                     </div>
                     <div class="mb-6">
                         <label for="item-id" class="block mb-2 text-sm font-semibold text-gray-900">Barang yang disewa</label>
-                        <select id="item-id" name="item-id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <select id="item-id" name="item-id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                             <t t-foreach="items" t-as="item">
                                 <option t-att-value="item.id">
                                     <t t-esc="item.name" />
@@ -739,11 +739,11 @@
                     </div>
                     <div class="mb-6">
                         <label for="qty" class="block mb-2 text-sm font-semibold text-gray-900">Kuantitas pengembalian</label>
-                        <input id="qty" name="qty" type="number" min="1" step="1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="1" required="true" />
+                        <input id="qty" name="qty" type="number" min="1" step="1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" placeholder="1" required="true" />
                     </div>
                 </div>
                 <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
-                <button type="submit" class="text-white bg-purple-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+                <button type="submit" class="text-purple-500 hover:bg-purple-500 hover:text-white font-semibold border-solid border-2 border-purple-500 rounded-full text-sm px-5 py-2.5 text-center mr-3 md:mr-0">Kembalikan</button>
             </form>
             <h2>Tidak menemukan pengembalian?</h2>
             <form method="POST" action="/asset/returns/new-return">
@@ -755,12 +755,12 @@
                                 <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
                             </svg>
                         </div>
-                        <input id="date" datepicker="" name="date" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Select date" />
+                        <input id="date" datepicker="" name="date" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5" placeholder="Select date" />
                     </div>
                 </div>
 
                 <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
-                <button type="submit" class="text-white bg-purple-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+                <button type="submit" class="text-purple-500 hover:bg-purple-500 hover:text-white font-semibold border-solid border-2 border-purple-500 rounded-full text-sm px-5 py-2.5 text-center mr-3 md:mr-0">Buat Pengembalian</button>
             </form>
         </div>
         <t t-call="PunyaSaudara.error" />
@@ -790,7 +790,7 @@
                 <div class="grid gap-6 mb-6 md:grid-cols-2">
                     <div class="mb-6">
                         <label for="month" class="block mb-2 text-sm font-semibold text-gray-900">Bulan</label>
-                        <select id="month" name="month" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <select id="month" name="month" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                             <t t-foreach="months" t-as="month">
                                 <option t-att-value="month_index + 1">
                                     <t t-esc="month" />
@@ -800,7 +800,7 @@
                     </div>
                     <div class="mb-6">
                         <label for="year" class="block mb-2 text-sm font-semibold text-gray-900">Tahun</label>
-                        <select id="year" name="year" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <select id="year" name="year" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                             <t t-foreach="years" t-as="year">
                                 <option t-att-value="year">
                                     <t t-esc="year" />
@@ -809,7 +809,7 @@
                         </select>
                     </div>
                 </div>
-                <button type="submit" class="text-white bg-purple-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Lihat</button>
+                <button type="submit" class="text-white bg-purple-500 hover:bg-blue-800 focus:outline-none font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Lihat</button>
             </form>
         </div>
         <t t-call="PunyaSaudara.error" />
@@ -878,7 +878,7 @@
                     </div>
                     <input type="hidden" name="redirect" value="/asset/" />
                     <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
-                    <button type="submit" class="text-white bg-purple-500 hover:bg-purple-500 focus:ring-4 focus:outline-none  font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Login</button>
+                    <button type="submit" class="text-purple-500 hover:bg-purple-500 hover:text-white font-semibold border-solid border-2 border-purple-500 rounded-full text-sm px-5 py-2.5 text-center mr-3 md:mr-0">Login</button>
                 </div>
             </form>
         </div>
