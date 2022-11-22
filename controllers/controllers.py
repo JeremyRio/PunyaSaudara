@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 from odoo import http
+from datetime import datetime
+
+MONTHS = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
+          "Juli", "Agustus", "September", "Oktober", "November", "Desember"]
+ESTABLISHMENT_YEAR = 2021
 
 
 class Asset(http.Controller):
@@ -51,20 +56,6 @@ class Asset(http.Controller):
         except Exception as e:
             return http.request.make_response("", headers=[("Location", f"/asset/items/produce?err={e}")], status=303)
 
-    # @http.route('/asset/rentals/', auth='user', website=True)
-    # def rentals(self, **kw):
-    #     rentals = http.request.env["aset.penyewaan"]
-    #     return http.request.render('PunyaSaudara.penyewaan', {
-    #         "rentals": rentals.search([])
-    #     })
-
-    # @http.route('/asset/rentals/<year>/<month>', auth='user', website=True)
-    # def rentals(self, year, month, **kw):
-    #     rental_items = http.request.env["aset.barang_sewaan"]
-    #     return http.request.render('PunyaSaudara.penyewaan', {
-    #         "rental_items": rental_items.search([("rental.month", "=", int(month)), ("rental.year", "=", int(year))])
-    #     })
-
     @http.route('/asset/rentals/', auth='user', website=True)
     def rentals(self, **kw):
         rental_items = http.request.env["aset.barang_sewaan"]
@@ -112,15 +103,6 @@ class Asset(http.Controller):
             return http.request.make_response("", headers=[("Location", "/asset/rentals/new")], status=303)
         except Exception as e:
             return http.request.make_response("", headers=[("Location", f"/asset/rentals/new?err={e}")], status=303)
-
-    # @http.route('/asset/returns/<year>/<month>', auth='user', website=True)
-    # def returns(self, **kw):
-    #     items = http.request.env["aset.barang"]
-    #     print(items)
-    #     print(items.search([]))
-    #     return http.request.render('PunyaSaudara.barang', {
-    #         "items": items.search([])
-    #     })
 
     @http.route('/asset/returns/', auth='user', website=True)
     def returns(self, **kw):
@@ -180,19 +162,60 @@ class Asset(http.Controller):
         })
 
     @http.route('/asset/rentals/report', auth='user', website=True)
-    def rentals_report(self, **kw):
+    def rentals_report_prompt(self, **kw):
+        this_year = datetime.now().year
+        years = [y for y in range(ESTABLISHMENT_YEAR, this_year + 1)]
+        return http.request.render('PunyaSaudara.penyewaan_report_prompt', {
+            "months": MONTHS,
+            "years": years
+        })
+
+    @http.route('/asset/rentals/report/<year>/<month>', auth='user', website=True)
+    def rentals_report(self, year, month, **kw):
+        rentals = http.request.env["aset.penyewaan"].search([("month", "=", int(month)),
+                                                             ("year", "=", int(year))])
         items = http.request.env["aset.barang"]
-        print(items)
-        print(items.search([]))
-        return http.request.render('PunyaSaudara.barang', {
-            "items": items.search([])
+
+        renteds = {}
+        returneds = {}
+        for rental in rentals:
+            for (id, qty) in rental.count_rented_items().items():
+                if id not in renteds:
+                    renteds[id] = 0
+                renteds[id] += qty
+            for (id, qty) in rental.count_returned_items().items():
+                if id not in returneds:
+                    returneds[id] = 0
+                returneds[id] += qty
+
+        return http.request.render('PunyaSaudara.penyewaan_report', {
+            "items": items,
+            "renteds": renteds,
+            "returneds": returneds
         })
 
     @http.route('/asset/returns/report', auth='user', website=True)
-    def returns_report(self, **kw):
+    def returns_report_prompt(self, **kw):
+        this_year = datetime.now().year
+        years = [y for y in range(ESTABLISHMENT_YEAR, this_year + 1)]
+        return http.request.render('PunyaSaudara.pengembalian_report_prompt', {
+            "months": MONTHS,
+            "years": years
+        })
+
+    @http.route('/asset/returns/report/<year>/<month>', auth='user', website=True)
+    def returns_report(self, year, month, **kw):
+        returns = http.request.env["aset.pengembalian"].search([("month", "=", int(month)),
+                                                                ("year", "=", int(year))])
         items = http.request.env["aset.barang"]
-        print(items)
-        print(items.search([]))
-        return http.request.render('PunyaSaudara.barang', {
-            "items": items.search([])
+        returneds = {}
+
+        for return_ in returns:
+            for (id, qty) in return_.count_items().items():
+                if id not in returneds:
+                    returneds[id] = 0
+                returneds[id] += qty
+        return http.request.render('PunyaSaudara.pengembalian_report', {
+            "returneds": returneds,
+            "items": items,
         })
