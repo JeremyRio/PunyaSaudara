@@ -219,3 +219,7 @@ class Asset(http.Controller):
             "returneds": returneds,
             "items": items,
         })
+
+    @http.route('/asset/login', auth='public', website=True)
+    def login(self, **kw):
+        return http.request.render('PunyaSaudara.login', {})
