@@ -108,18 +108,32 @@
         <div class="w-4/5 mx-auto mt-28">
             <h1>Stok Aset Perusahaan</h1>
 
-            <a href="/asset/items/new">
-                <button type="button" class="text-blue-700
+            <div class="flex gap-2">
+                <a href="/asset/items/new">
+                    <button type="button" class="text-blue-700
                     hover:text-white hover:bg-blue-700 focus:outline-none
                     font-semibold rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-4
                     flex gap-1 items-center border-2 border-solid border-blue-700
                     ">
-                    <span class="material-symbols-rounded relative">
+                        <span class="material-symbols-rounded relative">
                     add
                 </span>
-                    <span>Tambah barang</span>
-                </button>
-            </a>
+                        <span>Tambah barang</span>
+                    </button>
+                </a>
+                <a href="/asset/items/report">
+                    <button type="button" class="text-blue-700
+                    hover:text-white hover:bg-blue-700 focus:outline-none
+                    font-semibold rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-4
+                    flex gap-1 items-center border-2 border-solid border-blue-700
+                    ">
+                        <span class="material-symbols-rounded relative">
+                    description
+                </span>
+                        <span>Lihat Laporan</span>
+                    </button>
+                </a>
+            </div>
             <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -226,6 +240,66 @@
         </div>
 
         <t t-call="PunyaSaudara.error" />
+    </template>
+
+    <template id="barang_report">
+        <title>Laporan Stok Aset</title>
+        <t t-call="PunyaSaudara.prelude" />
+        <t t-call="PunyaSaudara.navbar" />
+
+
+        <div class="w-4/5 mx-auto mt-28">
+            <h1>Laporan Stok Aset</h1>
+
+            <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+                <table class="w-full text-sm text-left text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="py-3 px-6">Nama Barang</th>
+                            <th scope="col" class="py-3 px-6">Kuantitas Tersedia</th>
+                            <th scope="col" class="py-3 px-6">Sedang Dipinjam</th>
+                            <th scope="col" class="py-3 px-6">Kuantitas Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="items" t-as="item">
+                            <t t-set="unreturned" t-value="item.count_unreturned()" />
+                            <t t-if="item_index % 2 == 0">
+                                <th scope="row" class="py-4 px-6 font-semibold text-gray-900 whitespace-nowrap">
+                                    <t t-esc="item.name" />
+                                </th>
+                                <td class="py-4 px-6">
+                                    <t t-esc="item.qty" />
+                                </td>
+                                <td class="py-4 px-6">
+                                    <t t-esc="unreturned" />
+                                </td>
+                                <td class="py-4 px-6">
+                                    <t t-esc="item.qty + unreturned" />
+                                </td>
+                            </t>
+                            <t t-if="item_index % 2 == 1">
+                                <tr class="bg-gray-50 border-b">
+                                    <th scope="row" class="py-4 px-6 font-semibold text-gray-900 whitespace-nowrap">
+                                        <t t-esc="item.name" />
+                                    </th>
+                                    <td class="py-4 px-6">
+                                        <t t-esc="item.qty" />
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <t t-esc="unreturned" />
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <t t-esc="item.qty + unreturned" />
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </template>
 
     <template id="penyewaan">

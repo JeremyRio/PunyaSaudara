@@ -175,9 +175,7 @@ class Asset(http.Controller):
     @http.route('/asset/items/report', auth='user', website=True)
     def items_report(self, **kw):
         items = http.request.env["aset.barang"]
-        print(items)
-        print(items.search([]))
-        return http.request.render('PunyaSaudara.barang', {
+        return http.request.render('PunyaSaudara.barang_report', {
             "items": items.search([])
         })
 
