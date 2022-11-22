@@ -89,7 +89,7 @@
     </template>
 
     <template id="index">
-        <t t-set="title">Sistem Pencatatan Stok Aset</t>
+        <title>Sistem Pencatatan Stok Aset</title>
         <t t-call="PunyaSaudara.prelude" />
         <t t-call="PunyaSaudara.navbar" />
         <div class="oe_structure">
@@ -100,7 +100,7 @@
     </template>
 
     <template id="barang">
-        <t t-set="title">Stok Aset</t>
+        <title>Stok Aset</title>
         <t t-call="PunyaSaudara.prelude" />
         <t t-call="PunyaSaudara.navbar" />
 
@@ -164,7 +164,7 @@
     </template>
 
     <template id="barang_new">
-        <t t-set="title">Tambah Barang</t>
+        <title>Tambah Barang</title>
         <t t-call="PunyaSaudara.prelude" />
         <t t-call="PunyaSaudara.navbar" />
 
@@ -187,7 +187,7 @@
     </template>
 
     <template id="barang_produce">
-        <t t-set="title">Produksi Barang</t>
+        <title>Produksi Barang</title>
         <t t-call="PunyaSaudara.prelude" />
         <t t-call="PunyaSaudara.navbar" />
 
@@ -229,7 +229,7 @@
     </template>
 
     <template id="penyewaan">
-        <t t-set="title">Penyewaan Barang</t>
+        <title>Penyewaan Barang</title>
         <t t-call="PunyaSaudara.prelude" />
         <t t-call="PunyaSaudara.navbar" />
 
@@ -257,6 +257,7 @@
                             <th scope="col" class="py-3 px-6">Kuantitas</th>
                             <th scope="col" class="py-3 px-6">Tanggal Penyewaan</th>
                             <th scope="col" class="py-3 px-6">Durasi Sewa</th>
+                            <th scope="col" class="py-3 px-6">Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -278,6 +279,9 @@
                                     <t t-esc="rental_item.rental.duration" />
                                     hari
                                 </td>
+                                <td class="py-4 px-6">
+                                    <t t-esc="rental_item.rental.status_string()" />
+                                </td>
                             </t>
                             <t t-if="rental_item_index % 2 == 1">
                                 <tr class="bg-gray-50 border-b">
@@ -297,6 +301,9 @@
                                         <t t-esc="rental_item.rental.duration" />
                                         hari
                                     </td>
+                                    <td class="py-4 px-6">
+                                        <t t-esc="rental_item.rental.status_string()" />
+                                    </td>
                                 </tr>
                             </t>
                         </t>
@@ -307,7 +314,7 @@
     </template>
 
     <template id="penyewaan_new">
-        <t t-set="title">Tambah Penyewaan Baru</t>
+        <title>Tambah Penyewaan Baru</title>
         <t t-call="PunyaSaudara.prelude" />
         <t t-call="PunyaSaudara.navbar" />
 
@@ -378,7 +385,7 @@
     </template>
 
     <template id="pengembalian">
-        <t t-set="title">Pengembalian Barang</t>
+        <title>Pengembalian Barang</title>
         <t t-call="PunyaSaudara.prelude" />
         <t t-call="PunyaSaudara.navbar" />
 
@@ -447,7 +454,7 @@
     </template>
 
     <template id="pengembalian_new">
-        <t t-set="title">Tambah Pengembalian Barang Baru</t>
+        <title>Tambah Pengembalian Barang Baru</title>
         <t t-call="PunyaSaudara.prelude" />
         <t t-call="PunyaSaudara.navbar" />
 
@@ -492,7 +499,7 @@
                         </select>
                     </div>
                     <div class="mb-6">
-                        <label for="qty" class="block mb-2 text-sm font-semibold text-gray-900">Kuantitas penyewaan</label>
+                        <label for="qty" class="block mb-2 text-sm font-semibold text-gray-900">Kuantitas pengembalian</label>
                         <input id="qty" name="qty" type="number" min="1" step="1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="1" required="true" />
                     </div>
                 </div>

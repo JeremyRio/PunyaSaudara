@@ -22,10 +22,16 @@ class BarangKembalian(Model):
         rented_item_qty = rental.count_rented_item(item)
         returned_item_qty = rental.count_returned_item(item)
         return_qty = int(vals_list["qty"])
+        unreturned_qty = rented_item_qty - returned_item_qty
 
-        if returned_item_qty > rented_item_qty:
+        if unreturned_qty == 0:
             raise ValidationError(
-                f"Kuantitas pengembalian ({return_qty}) melebihi kuantitas barang yang belum dikembalikan ({rented_item_qty - returned_item_qty + return_qty})."
+                f"Barang sewaan telah dikembalikan sepenuhnya."
+            )
+
+        if return_qty > unreturned_qty:
+            raise ValidationError(
+                f"Kuantitas pengembalian ({return_qty}) melebihi kuantitas barang yang belum dikembalikan ({unreturned_qty})."
             )
 
         item_return = super().create(vals_list)

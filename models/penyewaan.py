@@ -96,3 +96,6 @@ class Penyewaan(Model):
         month = months[int(month_index) - 1]
 
         return f"{date} {month} {year}"
+
+    def status_string(self):
+        return "Dikembalikan" if self.status == "1" else "Belum dikembalikan"
