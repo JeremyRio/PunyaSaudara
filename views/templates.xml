@@ -265,7 +265,7 @@
                         <tr>
                             <th scope="col" class="py-3 px-6">Nama Barang</th>
                             <th scope="col" class="py-3 px-6">Kuantitas Tersedia</th>
-                            <th scope="col" class="py-3 px-6">Sedang Dipinjam</th>
+                            <th scope="col" class="py-3 px-6">Sedang Disewa</th>
                             <th scope="col" class="py-3 px-6">Kuantitas Total</th>
                         </tr>
                     </thead>
