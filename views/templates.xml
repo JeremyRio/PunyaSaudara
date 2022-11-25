@@ -224,7 +224,7 @@
 
                         <select id="id" name="id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                             <t t-foreach="items" t-as="item">
-                                <t t-if="given_id == item.id">
+                                <t t-if="given_id == item_index + 1">
                                     <option t-att-value="item.id" selected="selected">
                                         <t t-esc="item.name" />
                                     </option>
