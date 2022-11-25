@@ -182,6 +182,8 @@ class Asset(http.Controller):
             for (id, qty) in rental.count_rented_items().items():
                 if id not in renteds:
                     renteds[id] = 0
+                if id not in returneds:
+                    returneds[id] = 0
                 renteds[id] += qty
             for (id, qty) in rental.count_returned_items().items():
                 if id not in returneds:
